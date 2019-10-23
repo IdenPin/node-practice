@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 "use strict"
 
 import Vue from "vue"
@@ -32,7 +33,7 @@ _axios.interceptors.request.use(
 _axios.interceptors.response.use(
   function(response) {
     // Do something with response data
-    return response
+    return response.data
   },
   function(error) {
     // Do something with response error
@@ -40,6 +41,7 @@ _axios.interceptors.response.use(
   }
 )
 
+// eslint-disable-next-line no-unused-vars
 Plugin.install = function(Vue, options) {
   Vue.axios = _axios
   window.axios = _axios

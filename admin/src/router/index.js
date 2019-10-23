@@ -13,6 +13,10 @@ const routes = [
       {
         path: "categories/create",
         component: () => import("../views/CategoryEdit.vue")
+      },
+      {
+        path: "categories/list",
+        component: () => import("../views/CategoryList.vue")
       }
     ]
   }
@@ -29,5 +33,11 @@ const routes = [
 const router = new VueRouter({
   routes
 })
+
+// 解决 Navigating to current location ("/categories/list") is not allowed bug
+const routerPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch(error => error)
+}
 
 export default router
