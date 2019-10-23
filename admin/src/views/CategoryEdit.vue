@@ -1,8 +1,6 @@
-/* eslint-disable no-console */
-/* eslint-disable no-console */
 <template>
   <div class="create-category">
-    <h1>新建分类</h1>
+    <h1>{{id ? '编辑' : '新建'}}分类</h1>
     <el-form label-width="120px" @submit.native.prevent="save">
       <el-form-item label="名称">
         <el-input v-model="model.name" />
@@ -15,16 +13,27 @@
 </template>
 <script>
 export default {
+  props: {
+    id: {}
+  },
   data() {
     return {
       model: {}
     }
   },
+  created() {
+    this.id && this.fetch()
+  },
   methods: {
+    async fetch() {
+      this.model = await this.$http.get(`/rest/categories/${this.id}`)
+    },
     async save() {
-      const res = await this.$http.post('/rest/categories', this.model)
-      // eslint-disable-next-line no-console
-      console.log(res, res)
+      if (this.id) {
+        await this.$http.put(`rest/categories/${this.id}`, this.model)
+      } else {
+        await this.$http.post('rest/categories', this.model)
+      }
       this.$message({
         type: 'success',
         message: '保存成功'
