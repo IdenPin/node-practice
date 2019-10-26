@@ -1,11 +1,11 @@
 <template>
   <div class="create-category">
-    <h1>{{id ? '编辑' : '新建'}}物品</h1>
+    <h1>{{id ? '编辑' : '新建'}}英雄</h1>
     <el-form label-width="120px" @submit.native.prevent="save">
       <el-form-item label="名称">
         <el-input v-model="model.name" />
       </el-form-item>
-      <el-form-item label="图标">
+      <el-form-item label="图像">
         <el-upload
           class="avatar-uploader"
           :action="uploadUrl"
@@ -38,20 +38,20 @@ export default {
   },
   methods: {
     async fetch() {
-      this.model = await this.$http.get(`/rest/items/${this.id}`)
+      this.model = await this.$http.get(`/rest/heroes/${this.id}`)
     },
     async save() {
       if (this.id) {
-        await this.$http.put(`rest/items/${this.id}`, this.model)
+        await this.$http.put(`rest/heroes/${this.id}`, this.model)
       } else {
-        await this.$http.post('rest/items', this.model)
+        await this.$http.post('rest/heroes', this.model)
       }
       this.$notify({
         type: 'success',
         title: '成功',
         message: '保存成功'
       })
-      this.$router.push('/items/list')
+      this.$router.push('/heroes/list')
     },
     handleAvatarSuccess(data) {
       this.$set(this.model, 'icon', data.url)
@@ -78,14 +78,14 @@ export default {
 .avatar-uploader-icon {
   font-size: 28px;
   color: #8c939d;
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
+  width: 100px;
+  height: 100px;
+  line-height: 100px;
   text-align: center;
 }
 .avatar {
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   display: block;
 }
 </style>

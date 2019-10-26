@@ -5,9 +5,10 @@ app.use(require("cors")())
 app.use(express.json())
 app.use("/uploads", express.static(__dirname + "/uploads"))
 
+app.set("secret", "9991gnep")
+
 require("./plugins/db")(app)
 require("./routes/admin")(app)
-
-app.listen("3000", () => {
-  console.log("监听3000端口 ...")
+app.listen(3000, () => {
+  console.log("http://localhost:3000")
 })

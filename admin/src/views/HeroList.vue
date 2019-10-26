@@ -1,7 +1,7 @@
 <template>
   <div class="create-category">
-    <h1>物品列表</h1>
-    <el-table :data="items">
+    <h1>英雄列表</h1>
+    <el-table :data="heroes">
       <el-table-column prop="_id" label="ID" width="320"></el-table-column>
       <el-table-column prop="name" label="物品名称"></el-table-column>
       <el-table-column label="图标">
@@ -15,7 +15,7 @@
           <el-button
             type="text"
             size="small"
-            @click="$router.push(`/items/edit/${scope.row._id}`)"
+            @click="$router.push(`/heroes/edit/${scope.row._id}`)"
           >编辑</el-button>
         </template>
       </el-table-column>
@@ -26,7 +26,7 @@
 export default {
   data() {
     return {
-      items: []
+      heroes: []
     }
   },
   mounted() {
@@ -40,7 +40,7 @@ export default {
         type: 'warning'
       })
         .then(async () => {
-          await this.$http.delete(`/rest/items/${_id}`)
+          await this.$http.delete(`/rest/heroes/${_id}`)
           this.$notify({
             type: 'success',
             title: '成功',
@@ -57,8 +57,8 @@ export default {
         })
     },
     async fetch() {
-      const res = await this.$http.get('/rest/items')
-      this.items = res
+      const res = await this.$http.get('/rest/heroes')
+      this.heroes = res
     }
   }
 }
