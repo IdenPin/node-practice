@@ -63,14 +63,11 @@
           <el-form-item label="团战思路">
             <el-input type="textarea" v-model="model.teamTips"></el-input>
           </el-form-item>
-          <el-form-item>
-            <el-button type="primary" native-type="submit">保存</el-button>
-          </el-form-item>
         </el-tab-pane>
         <el-tab-pane label="技能" name="skills">
           <el-button type="text" @click="model.skills.push({})">添加技能</el-button>
           <el-row type="flex" style="flex-wrap:wrap">
-            <el-col :md="12" v-for="item in model.skills" :key="item._id">
+            <el-col :md="12" v-for="(item, index) in model.skills" :key="index">
               <el-form-item label="名称">
                 <el-input v-model="item.name" />
               </el-form-item>
@@ -79,7 +76,7 @@
                   class="avatar-uploader"
                   :action="uploadUrl"
                   :show-file-list="false"
-                  :on-success="handleAvatarSuccess"
+                  :on-success="res => $set(item, 'icon', res.url)"
                 >
                   <img v-if="item.icon" :src="item.icon" class="avatar" />
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -91,10 +88,12 @@
               <el-form-item label="小提示">
                 <el-input type="textarea" v-model="item.tips" />
               </el-form-item>
+              <el-button size="mini" type="danger" @click="model.skills.splice(index, 1)">删除</el-button>
             </el-col>
           </el-row>
         </el-tab-pane>
       </el-tabs>
+      <el-button type="primary" style="float:right;margin-top: 30px;" native-type="submit">保存</el-button>
     </el-form>
   </div>
 </template>
