@@ -3,10 +3,11 @@
     <h1>英雄列表</h1>
     <el-table :data="heroes">
       <el-table-column prop="_id" label="ID" width="320"></el-table-column>
-      <el-table-column prop="name" label="物品名称"></el-table-column>
-      <el-table-column label="图标">
+      <el-table-column prop="name" label="英雄名称"></el-table-column>
+      <el-table-column prop="title" label="英雄称号"></el-table-column>
+      <el-table-column label="头像">
         <template slot-scope="scope">
-          <img :src="scope.row.icon" width="50" height="50" />
+          <img :src="scope.row.avatar" width="50" height="50" />
         </template>
       </el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
