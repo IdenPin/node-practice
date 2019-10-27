@@ -4,6 +4,7 @@ import Main from "../views/Main.vue"
 import CategoryEdit from "../views/CategoryEdit.vue"
 import ItemEdit from "../views/ItemEdit.vue"
 import HeroEdit from "../views/HeroEdit.vue"
+import ArticleEdit from "../views/ArticleEdit.vue"
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,19 @@ const routes = [
       {
         path: "heroes/list",
         component: () => import("../views/HeroList.vue")
+      },
+      {
+        path: "articles/create",
+        component: ArticleEdit
+      },
+      {
+        path: "articles/edit/:id",
+        component: ArticleEdit,
+        props: true
+      },
+      {
+        path: "articles/list",
+        component: () => import("../views/ArticleList.vue")
       }
     ]
   }
