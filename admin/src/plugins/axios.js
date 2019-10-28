@@ -3,6 +3,7 @@
 
 import Vue from "vue"
 import axios from "axios"
+import { Notification } from "element-ui"
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
@@ -36,7 +37,11 @@ _axios.interceptors.response.use(
     return response.data
   },
   function(error) {
-    // Do something with response error
+    // console.log("error.response")
+    Notification({
+      type: "error",
+      title: error.response.data.message
+    })
     return Promise.reject(error)
   }
 )

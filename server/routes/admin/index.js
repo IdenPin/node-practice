@@ -52,6 +52,47 @@ module.exports = app => {
     router
   )
 
+  // 登录
+  app.post("/admin/api/login", async (req, res) => {
+    const User = require("../../models/User")
+    const { username, password } = req.body
+    // 1. 根据用户名找用户
+    const data = await User.findOne({
+      username
+    }).select("+password")
+    if (!data) {
+      return res.status(422).send({
+        message: "用户名不存在"
+      })
+    }
+    // 2. 效验密码
+    const isValid = require("bcrypt").compareSync(password, data.password)
+    if (!isValid) {
+      return res.status(422).send({
+        message: "密码错误"
+      })
+    }
+
+    // 3. 返回token
+    const jwt = require("jsonwebtoken")
+    res.send({
+      username,
+      token: jwt.sign(
+        { _id: User._id, username: data.username },
+        app.get("secret")
+      )
+    })
+  })
+
+  // 注册
+  app.post("/admin/api/register", async (req, res) => {
+    const User = require("../../models/User")
+    await User.create(req.body)
+    res.send({
+      success: "ok"
+    })
+  })
+
   /**
    * 图片上传操作
    */
