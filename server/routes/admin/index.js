@@ -42,8 +42,11 @@ module.exports = app => {
     })
   })
 
+  // 登录校验中间件
+  const authMiddleware = require("../../middleware/auth")
   app.use(
     "/admin/api/rest/:resource",
+    authMiddleware(),
     async (req, res, next) => {
       const modelName = inflection.classify(req.params.resource)
       req.Model = require(`../../models/${modelName}`)
@@ -78,7 +81,7 @@ module.exports = app => {
     res.send({
       username,
       token: jwt.sign(
-        { _id: User._id, username: data.username },
+        { _id: data._id, username: data.username },
         app.get("secret")
       )
     })
@@ -103,6 +106,7 @@ module.exports = app => {
 
   app.post(
     "/admin/api/upload",
+    authMiddleware(),
     upload.single("file"),
     async (req, res, next) => {
       const file = req.file
