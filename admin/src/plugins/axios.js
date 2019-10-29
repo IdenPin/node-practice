@@ -37,10 +37,10 @@ _axios.interceptors.response.use(
     return response.data
   },
   function(error) {
-    // console.log("error.response")
+    console.log("error.response", error.response)
     Notification({
       type: "error",
-      title: error.response.data.message
+      title: error.response.data.message || error.response.statusText
     })
     return Promise.reject(error)
   }

@@ -14,7 +14,7 @@
           </el-form-item>
         </el-form>
       </el-tab-pane>
-      <el-tab-pane label="注册">
+      <el-tab-pane label="临时用户注册">
         <el-form label-width="70px" @submit.native.prevent="register" style="margin-top: 20px">
           <el-form-item label="用户名：">
             <el-input style="width:80%" v-model="model.username" />
@@ -55,7 +55,20 @@ export default {
       })
     },
     async register() {
-      await this.$http.post('register', this.model)
+      const { success } = await this.$http.post('register', this.model)
+      let tips = null
+      let isType = null
+      if (success === 'ok') {
+        tips = '注册成功'
+        isType = 'success'
+      } else {
+        tips = '注册失败'
+        isType = 'error'
+      }
+      this.$notify({
+        type: isType,
+        message: tips
+      })
     }
   }
 }

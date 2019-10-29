@@ -29,8 +29,8 @@
           </template>
           <el-menu-item-group>
             <template slot="title">管理员</template>
-            <el-menu-item index="/admin_users/create">新建管理员</el-menu-item>
-            <el-menu-item index="/admin_users/list">管理员列表</el-menu-item>
+            <el-menu-item index="/users/create">新建管理员</el-menu-item>
+            <el-menu-item index="/users/list">管理员列表</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
             <template slot="title">分类</template>
@@ -56,9 +56,9 @@
         <el-dropdown>
           <i class="el-icon-setting" style="margin-right: 15px"></i>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>查看</el-dropdown-item>
-            <el-dropdown-item>新增</el-dropdown-item>
-            <el-dropdown-item>删除</el-dropdown-item>
+            <el-dropdown-item>
+              <div @click="logout">退出</div>
+            </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
         <span>{{username}}</span>
@@ -88,6 +88,12 @@ export default {
   data() {
     return {
       username: JSON.parse(localStorage.getItem('userData')).username
+    }
+  },
+  methods: {
+    logout() {
+      localStorage.clear()
+      this.$router.push('/login')
     }
   }
 }

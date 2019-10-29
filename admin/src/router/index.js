@@ -6,6 +6,7 @@ import ItemEdit from "../views/ItemEdit.vue"
 import HeroEdit from "../views/HeroEdit.vue"
 import ArticleEdit from "../views/ArticleEdit.vue"
 import AdEdit from "../views/AdEdit.vue"
+import UserEdit from "../views/UserEdit.vue"
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,7 @@ const routes = [
     path: "/",
     name: "main",
     component: Main,
+    redirect: "/items/create",
     children: [
       {
         path: "categories/create",
@@ -72,7 +74,6 @@ const routes = [
         path: "articles/list",
         component: () => import("../views/ArticleList.vue")
       },
-
       {
         path: "ads/create",
         component: AdEdit
@@ -85,6 +86,19 @@ const routes = [
       {
         path: "ads/list",
         component: () => import("../views/AdList.vue")
+      },
+      {
+        path: "users/create",
+        component: UserEdit
+      },
+      {
+        path: "users/edit/:id",
+        component: UserEdit,
+        props: true
+      },
+      {
+        path: "users/list",
+        component: () => import("../views/UserList.vue")
       }
     ]
   }
