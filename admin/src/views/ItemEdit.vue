@@ -9,6 +9,7 @@
         <el-upload
           class="avatar-uploader"
           :action="uploadUrl"
+          :headers="getAuthHeaders()"
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
         >
@@ -29,7 +30,6 @@ export default {
   },
   data() {
     return {
-      uploadUrl: 'http://localhost:3000/admin/api/upload',
       model: {}
     }
   },
@@ -80,7 +80,7 @@ export default {
   color: #8c939d;
   width: 60px;
   height: 60px;
-  line-height: 60px;
+  line-height: 60px !important;
   text-align: center;
 }
 .avatar {

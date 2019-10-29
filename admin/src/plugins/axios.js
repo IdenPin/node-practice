@@ -2,6 +2,7 @@
 "use strict"
 
 import Vue from "vue"
+import router from "../router"
 import axios from "axios"
 import { Notification } from "element-ui"
 
@@ -21,6 +22,11 @@ const _axios = axios.create(config)
 
 _axios.interceptors.request.use(
   function(config) {
+    const tokenData = JSON.parse(localStorage.getItem("userData"))
+    if (tokenData && tokenData.token) {
+      config.headers.Authorization =
+        "Bear " + (tokenData && tokenData.token) || ""
+    }
     // Do something before request is sent
     return config
   },
@@ -42,6 +48,9 @@ _axios.interceptors.response.use(
       type: "error",
       title: error.response.data.message || error.response.statusText
     })
+    if (error.response.status === 401) {
+      router.push("/login")
+    }
     return Promise.reject(error)
   }
 )

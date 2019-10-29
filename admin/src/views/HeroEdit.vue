@@ -104,7 +104,6 @@ export default {
   },
   data() {
     return {
-      uploadUrl: 'http://localhost:3000/admin/api/upload',
       model: {
         scores: {}
       },
@@ -168,7 +167,8 @@ export default {
   color: #8c939d;
   width: 100px;
   height: 100px;
-  line-height: 100px;
+  line-height: 100px !important;
+
   text-align: center;
 }
 .avatar {

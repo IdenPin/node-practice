@@ -86,8 +86,9 @@
 <script>
 export default {
   data() {
+    const tokenData = JSON.parse(localStorage.getItem('userData'))
     return {
-      username: JSON.parse(localStorage.getItem('userData')).username
+      username: tokenData && tokenData.username
     }
   },
   methods: {
