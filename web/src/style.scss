@@ -1,0 +1,175 @@
+* {
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  font-size: 13px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.2em;
+  background-color: #f1f1f1;
+}
+
+a {
+  color: #999;
+}
+
+// colors
+$colors: (
+  // 可理解为 js 的对象
+    "primary": #db9d3e,
+  "white": #fff,
+  "light": #f9f9f9,
+  "grey": #999,
+  "dark-1": #343440,
+  "dark": #222,
+  "black": #161725
+);
+@each $colorKey, $color in $colors {
+  .text-#{$colorKey} {
+    color: $color;
+  }
+  .bg-#{$colorKey} {
+    background-color: $color;
+  }
+}
+
+// text
+@each $var in (left, right, center) {
+  // 可理解为 js 的数组
+  .text-#{$var} {
+    text-align: $var;
+  }
+}
+
+// font size
+$base-font-size: 13px;
+// 安装 px to rem [设置插件默认以 13px 为基础计算][alt + z]
+$font-size: (
+  // 8px
+    xxs: 0.6154,
+  // 10px
+    xs: 0.7692,
+  // 12px
+    sm: 0.9231,
+  // 13px
+    md: 1,
+  // 14px
+    lg: 1.0769,
+  // 16px
+    xl: 1.2308
+);
+@each $sizeKey, $size in $font-size {
+  .fs-#{$sizeKey} {
+    font-size: $size * $base-font-size;
+  }
+}
+
+// flex
+.d-flex {
+  display: flex;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+$flex-direction: (
+  "rowr": column-reverse,
+  "columnr": row-reverse,
+  "row": row,
+  "column": column
+);
+@each $key, $value in $flex-direction {
+  .dr-#{$key} {
+    flex-direction: $value;
+  }
+}
+
+$flex-jc: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around
+);
+
+@each $key, $value in $flex-jc {
+  .jc-#{$key} {
+    justify-content: $value;
+  }
+}
+
+$flex-ai: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  stretch: stretch
+);
+
+@each $key, $value in $flex-ai {
+  .ai-#{$key} {
+    align-items: $value;
+  }
+}
+
+// margin padding
+$spacing-base-size: 1rem;
+$spacing-types: (
+  m: margin,
+  p: padding
+);
+$spacing-sizes: (
+  0: 0,
+  1: 0.25,
+  2: 0.5,
+  3: 1,
+  4: 1.5,
+  5: 3
+);
+$spacing-directions: (
+  "t": top,
+  "r": right,
+  "b": bottom,
+  "l": left
+);
+
+// .m-1 {margin:1rem}
+@each $typeKey, $typeVal in $spacing-types {
+  @each $sizeKey, $sizeVal in $spacing-sizes {
+    .#{$typeKey}-#{$sizeKey} {
+      #{$typeVal}: $sizeVal * $spacing-base-size;
+    }
+  }
+}
+
+// .m-x {margin-left: 1rem; margin-right:1rem}
+@each $typeKey, $typeVal in $spacing-types {
+  @each $sizeKey, $sizeVal in $spacing-sizes {
+    .#{$typeKey}x-#{$sizeKey} {
+      #{$typeVal}-left: $sizeVal * $spacing-base-size;
+      #{$typeVal}-right: $sizeVal * $spacing-base-size;
+    }
+    .#{$typeKey}y-#{$sizeKey} {
+      #{$typeVal}-top: $sizeVal * $spacing-base-size;
+      #{$typeVal}-bottom: $sizeVal * $spacing-base-size;
+    }
+  }
+}
+
+// .mt-1 {margin-top: 1rem}
+@each $typeKey, $typeVal in $spacing-types {
+  @each $directionKey, $directionVal in $spacing-directions {
+    @each $sizeKey, $sizeVal in $spacing-sizes {
+      .#{$typeKey}#{$directionKey}-#{$sizeKey} {
+        #{$typeVal}-#{$directionVal}: $sizeVal * $spacing-base-size;
+      }
+    }
+  }
+}
