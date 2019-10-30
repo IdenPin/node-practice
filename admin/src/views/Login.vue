@@ -51,6 +51,7 @@ export default {
       this.$router.push('/')
       this.$notify({
         type: 'success',
+        title: '成功',
         message: '登录成功'
       })
     },
@@ -67,6 +68,7 @@ export default {
       }
       this.$notify({
         type: isType,
+        title: tips.slice(2, 4),
         message: tips
       })
     }

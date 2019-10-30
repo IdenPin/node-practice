@@ -1,6 +1,5 @@
-module.exports = options => {
+module.exports = () => {
   return async (req, res, next) => {
-    // 将小写负数转化成大写单数 categories -> Category
     const modelName = require("inflection").classify(req.params.resource)
     req.Model = require(`../models/${modelName}`)
     next()

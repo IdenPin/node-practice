@@ -1,6 +1,6 @@
 module.exports = app => {
   const express = require("express")
-  // 单子单复数转换，首字母大写
+  // 单词单复数转换，首字母大写
   const inflection = require("inflection")
   const router = express.Router({
     mergeParams: true
@@ -44,14 +44,11 @@ module.exports = app => {
 
   // 登录校验中间件
   const authMiddleware = require("../../middleware/auth")
+  const resourceMiddleware = require("../../middleware/resource")
   app.use(
     "/admin/api/rest/:resource",
     authMiddleware(),
-    async (req, res, next) => {
-      const modelName = inflection.classify(req.params.resource)
-      req.Model = require(`../../models/${modelName}`)
-      next()
-    },
+    resourceMiddleware(),
     router
   )
 
@@ -75,7 +72,6 @@ module.exports = app => {
         message: "密码错误"
       })
     }
-
     // 3. 返回token
     const jwt = require("jsonwebtoken")
     res.send({

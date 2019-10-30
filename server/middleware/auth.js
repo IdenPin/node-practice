@@ -1,4 +1,4 @@
-module.exports = options => {
+module.exports = () => {
   const jwt = require("jsonwebtoken")
   const User = require("../models/User")
   return async (req, res, next) => {

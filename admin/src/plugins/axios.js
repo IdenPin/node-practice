@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 "use strict"
 
 import Vue from "vue"
@@ -46,7 +45,8 @@ _axios.interceptors.response.use(
     console.log("error.response", error.response)
     Notification({
       type: "error",
-      title: error.response.data.message || error.response.statusText
+      title: "失败",
+      message: error.response.data.message || error.response.statusText
     })
     if (error.response.status === 401) {
       router.push("/login")

@@ -88,7 +88,9 @@
               <el-form-item label="小提示">
                 <el-input type="textarea" v-model="item.tips" />
               </el-form-item>
-              <el-button size="mini" type="danger" @click="model.skills.splice(index, 1)">删除</el-button>
+              <el-form-item>
+                <el-button size="mini" type="danger" @click="model.skills.splice(index, 1)">删除</el-button>
+              </el-form-item>
             </el-col>
           </el-row>
         </el-tab-pane>
@@ -105,6 +107,7 @@ export default {
   data() {
     return {
       model: {
+        skills: [],
         scores: {}
       },
       categories: [],
