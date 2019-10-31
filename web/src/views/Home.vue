@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <swiper :options="swiperOption" ref="mySwiper" @someSwiperEvent="callback">
-      <!-- slides -->
+    <!-- slides -->
+    <swiper ref="mySwiper" @someSwiperEvent="callback">
       <swiper-slide>
         <img
           class="w-100"
@@ -15,6 +15,35 @@
         />
       </swiper-slide>
     </swiper>
+    <!-- nav -->
+    <div class="nav-icons bg-white mt-3">
+      <div class="d-flex flex-wrap">
+        <div class="nav-item text-center mt-3 mb-2" v-for="n in 10" :key="n">
+          <i class="icon icon-story"></i>
+          <div class="py-1">爆料站</div>
+        </div>
+      </div>
+      <div class="bg-light text-center fs-sm py-2">
+        <i class="icon icon-arrow-top"></i>
+        收起
+      </div>
+    </div>
+    <!-- card -->
+    <m-list-card icon="news" title="新闻资讯" :categories="newsCates">
+      <template #items="{category}">
+        <div
+          class="py-2"
+          :class="{active:false}"
+          v-for="(item, index) in category.newsList"
+          :key="index"
+        >
+          <span>[{{item.categoryName}}]</span>
+          <span>|</span>
+          <span>{{item.title}}</span>
+          <span>{{item.date}}</span>
+        </div>
+      </template>
+    </m-list-card>
   </div>
 </template>
 
@@ -25,11 +54,48 @@ export default {
   name: 'home',
   data() {
     return {
-      swiperOption: {
-        // some swiper options/callbacks
-        // 所有的参数同 swiper 官方 api 参数
-        // ...
-      }
+      newsCates: [
+        {
+          name: '热门',
+          newsList: new Array(5).fill({
+            categoryName: '公告',
+            title: '10月30日全服不停机修复公告 ~',
+            date: '10/01'
+          })
+        },
+        {
+          name: '新闻',
+          newsList: new Array(5).fill({
+            categoryName: '新闻',
+            title: '聚多方跨界之势 共崭新商业生态 王者荣耀商户特权正式发布',
+            date: '10/31'
+          })
+        },
+        {
+          name: '公告',
+          newsList: new Array(5).fill({
+            categoryName: '公告',
+            title: '附近的人功能无法使用异常说明',
+            date: '10/01'
+          })
+        },
+        {
+          name: '活动',
+          newsList: new Array(5).fill({
+            categoryName: '公告',
+            title: '10月30日全服不停机修复公告 ~',
+            date: '10/21'
+          })
+        },
+        {
+          name: '赛事',
+          newsList: new Array(5).fill({
+            categoryName: '公告',
+            title: '王者荣耀商户特权正式发布',
+            date: '10/03'
+          })
+        }
+      ]
     }
   },
   computed: {
@@ -38,9 +104,6 @@ export default {
     }
   },
   mounted() {
-    // current swiper instance
-    // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
-    // console.log('this is current swiper instance object', this.swiper)
     this.swiper.slideTo(3, 1000, false)
   },
   methods: {
@@ -48,3 +111,18 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+@import '../styles/variables.scss';
+.nav-icons {
+  .nav-item {
+    width: 25%;
+    border-left: 1px solid $border-color;
+    // 4 的倍数加1
+    &:nth-child(4n + 1) {
+      border-left: none;
+    }
+  }
+  border-bottom: 1px solid $border-color;
+}
+</style>

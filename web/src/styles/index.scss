@@ -1,36 +1,6 @@
-* {
-  box-sizing: border-box;
-  outline: none;
-}
+@import "./rest";
+@import "./variables";
 
-html {
-  font-size: 13px;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.2em;
-  background-color: #f1f1f1;
-}
-
-a {
-  color: #999;
-}
-
-// colors
-$colors: (
-  // 可理解为 js 的对象
-    "primary": #db9d3e,
-  "white": #fff,
-  "light": #f9f9f9,
-  "grey": #999,
-  "grey-1": #666,
-  "dark-1": #343440,
-  "dark": #222,
-  "black": #161725
-);
 @each $colorKey, $color in $colors {
   .text-#{$colorKey} {
     color: $color;
@@ -48,23 +18,6 @@ $colors: (
   }
 }
 
-// font size
-$base-font-size: 13px;
-// 安装 px to rem [设置插件默认以 13px 为基础计算][alt + z]
-$font-sizes: (
-  // 8px
-    xxs: 0.6154,
-  // 10px
-    xs: 0.7692,
-  // 12px
-    sm: 0.9231,
-  // 13px
-    md: 1,
-  // 14px
-    lg: 1.0769,
-  // 16px
-    xl: 1.2308
-);
 @each $sizeKey, $size in $font-sizes {
   .fs-#{$sizeKey} {
     font-size: $size * $base-font-size;
@@ -82,6 +35,10 @@ $font-sizes: (
   flex-grow: 1;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 $flex-direction: (
   "rowr": column-reverse,
   "columnr": row-reverse,
@@ -94,26 +51,11 @@ $flex-direction: (
   }
 }
 
-$flex-jc: (
-  start: flex-start,
-  end: flex-end,
-  center: center,
-  between: space-between,
-  around: space-around
-);
-
 @each $key, $value in $flex-jc {
   .jc-#{$key} {
     justify-content: $value;
   }
 }
-
-$flex-ai: (
-  start: flex-start,
-  end: flex-end,
-  center: center,
-  stretch: stretch
-);
 
 @each $key, $value in $flex-ai {
   .ai-#{$key} {
@@ -122,25 +64,6 @@ $flex-ai: (
 }
 
 // margin padding
-$spacing-base-size: 1rem;
-$spacing-types: (
-  m: margin,
-  p: padding
-);
-$spacing-sizes: (
-  0: 0,
-  1: 0.25,
-  2: 0.5,
-  3: 1,
-  4: 1.5,
-  5: 3
-);
-$spacing-directions: (
-  "t": top,
-  "r": right,
-  "b": bottom,
-  "l": left
-);
 
 // .m-1 {margin:1rem}
 @each $typeKey, $typeVal in $spacing-types {
@@ -190,4 +113,63 @@ $spacing-directions: (
 }
 .h-100 {
   height: 100%;
+}
+.text-center {
+  text-align: center;
+}
+
+// nav
+.nav {
+  display: flex;
+  flex-direction: row;
+  .nav-item {
+    border-bottom: 3px solid transparent;
+    padding-bottom: 4px;
+    cursor: pointer;
+    &.active {
+      color: map-get($colors, "primary");
+      border-bottom-color: map-get($colors, "primary");
+    }
+  }
+  &.nav-inverse {
+    .nav-item {
+      &.active {
+        color: map-get($colors, "white");
+        border-bottom-color: map-get($colors, "white");
+      }
+    }
+  }
+}
+
+// icon 小图标
+.icon {
+  background: url("../assets/index.png") no-repeat 0 0;
+  background-size: 28.8462rem;
+  display: inline-block;
+  &.icon-story {
+    background-position: 63.546% 15.517%;
+    width: 1.7692rem;
+    height: 1.5385rem;
+  }
+  &.icon-arrow-top {
+    background-position: 38.577% 52.076%;
+    width: 0.7692rem;
+    height: 0.7692rem;
+  }
+  &.icon-arrow-bottom {
+    background-position: 38.577% 52.076%;
+    width: 0.7692rem;
+    height: 0.7692rem;
+    transform: rotate(180deg);
+  }
+  &.icon-more {
+    background-position: 47.619% 56.305%;
+    width: 1.3846rem;
+    height: 0.2308rem;
+  }
+  &.icon-news {
+    background-position: 0.138% 50.452%;
+    width: 1rem;
+    height: 1rem;
+  }
 }

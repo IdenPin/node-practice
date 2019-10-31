@@ -1,0 +1,68 @@
+// colors
+$colors: (
+  // 可理解为 js 的对象
+    "primary": #db9d3e,
+  "white": #fff,
+  "light": #f9f9f9,
+  "light-1": #d4d9de,
+  "grey": #999,
+  "grey-1": #666,
+  "dark-1": #343440,
+  "dark": #222,
+  "black": #161725
+);
+
+$border-color: map-get($colors, "light-1");
+
+// font size
+$base-font-size: 13px;
+// 安装 px to rem [设置插件默认以 13px 为基础计算][alt + z]
+$font-sizes: (
+  // 8px
+    xxs: 0.6154,
+  // 10px
+    xs: 0.7692,
+  // 12px
+    sm: 0.9231,
+  // 13px
+    md: 1,
+  // 14px
+    lg: 1.0769,
+  // 16px
+    xl: 1.2308
+);
+
+$flex-jc: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  between: space-between,
+  around: space-around
+);
+
+$flex-ai: (
+  start: flex-start,
+  end: flex-end,
+  center: center,
+  stretch: stretch
+);
+
+$spacing-base-size: 1rem;
+$spacing-types: (
+  m: margin,
+  p: padding
+);
+$spacing-sizes: (
+  0: 0,
+  1: 0.25,
+  2: 0.5,
+  3: 1,
+  4: 1.5,
+  5: 3
+);
+$spacing-directions: (
+  "t": top,
+  "r": right,
+  "b": bottom,
+  "l": left
+);

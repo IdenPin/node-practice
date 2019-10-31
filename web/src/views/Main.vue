@@ -8,7 +8,7 @@
       </div>
       <button type="button" class="btn bg-primary fs-xxs">立即下载</button>
     </div>
-    <div class="nav d-flex jc-around bg-primary text-white py-2">
+    <div class="nav nav-inverse jc-around bg-primary text-white py-2">
       <div class="nav-item active">
         <router-link to="/home" class="nav-link" tag="div">首页</router-link>
       </div>
@@ -26,15 +26,3 @@
 <script>
 export default {}
 </script>
-
-<style lang="scss" scoped>
-.nav {
-  .nav-item {
-    border-bottom: 3px solid transparent;
-    padding-bottom: 4px;
-    &.active {
-      border-bottom: 3px solid #fff;
-    }
-  }
-}
-</style>
