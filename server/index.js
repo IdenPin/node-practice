@@ -8,6 +8,7 @@ app.set("secret", "biubiubiu...")
 
 require("./plugins/db")(app)
 require("./routes/admin")(app)
+require("./routes/web")(app)
 
 app.listen("3000", () => {
   console.log("监听3000端口 ...")

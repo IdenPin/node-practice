@@ -21,7 +21,7 @@ module.exports = app => {
       // 展示这个关联字段的完整信息 parent id 变成一个完整对象
       // .populate("parent")
       .setOptions(queryOptions)
-      .limit(10)
+      .limit(100)
     res.send(items)
   })
 
