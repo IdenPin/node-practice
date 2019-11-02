@@ -83,7 +83,8 @@ module.exports = app => {
       }
     ])
 
-    const subCats = cats.map(v => v.id)
+    const subCats = cats.map(v => v._id)
+
     cats.unshift({
       name: "热门",
       newsList: await Article.find()
@@ -98,7 +99,7 @@ module.exports = app => {
     cats.map(cat => {
       cat.newsList.map(news => {
         news.categoryName =
-          cat.name === "热门" ? news.categoryName[0] : cat.name
+          cat.name === "热门" ? news.categories[0].name : cat.name
         return news
       })
       return cat

@@ -49,53 +49,11 @@
 
 <script>
 // @ is an alias to /src
-
 export default {
   name: 'home',
   data() {
     return {
-      newsCates: [
-        {
-          name: '热门',
-          newsList: new Array(5).fill({
-            categoryName: '公告',
-            title: '10月30日全服不停机修复公告 ~',
-            date: '10/01'
-          })
-        },
-        {
-          name: '新闻',
-          newsList: new Array(5).fill({
-            categoryName: '新闻',
-            title: '聚多方跨界之势 共崭新商业生态 王者荣耀商户特权正式发布',
-            date: '10/31'
-          })
-        },
-        {
-          name: '公告',
-          newsList: new Array(5).fill({
-            categoryName: '公告',
-            title: '附近的人功能无法使用异常说明',
-            date: '10/01'
-          })
-        },
-        {
-          name: '活动',
-          newsList: new Array(5).fill({
-            categoryName: '公告',
-            title: '10月30日全服不停机修复公告 ~',
-            date: '10/21'
-          })
-        },
-        {
-          name: '赛事',
-          newsList: new Array(5).fill({
-            categoryName: '公告',
-            title: '王者荣耀商户特权正式发布',
-            date: '10/03'
-          })
-        }
-      ]
+      newsCates: []
     }
   },
   computed: {
@@ -104,9 +62,13 @@ export default {
     }
   },
   mounted() {
+    this.fetchNewsCats()
     this.swiper.slideTo(3, 1000, false)
   },
   methods: {
+    async fetchNewsCats() {
+      this.newsCates = await this.$http.get('/news/list')
+    },
     callback() {}
   }
 }
