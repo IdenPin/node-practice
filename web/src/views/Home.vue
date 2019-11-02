@@ -18,9 +18,9 @@
     <!-- nav -->
     <div class="nav-icons bg-white mt-3">
       <div class="d-flex flex-wrap">
-        <div class="nav-item text-center mt-3 mb-2" v-for="n in 10" :key="n">
+        <div class="nav-item text-center mt-3 mb-2" v-for="(n,index) in navs" :key="index">
           <i class="icon icon-story"></i>
-          <div class="py-1">爆料站</div>
+          <div class="py-1 fs-sm text-grey-1">{{n}}</div>
         </div>
       </div>
       <div class="bg-light text-center fs-sm py-2">
@@ -59,7 +59,8 @@ export default {
   },
   data() {
     return {
-      newsCats: []
+      newsCats: [],
+      navs: []
     }
   },
   computed: {
@@ -68,12 +69,16 @@ export default {
     }
   },
   created() {
+    this.fetchNavs()
     this.fetchNewsCats()
   },
   mounted() {
     this.swiper.slideTo(3, 1000, false)
   },
   methods: {
+    async fetchNavs() {
+      this.navs = await this.$http.get('/home/navs')
+    },
     async fetchNewsCats() {
       this.newsCats = await this.$http.get('/news/list')
     },

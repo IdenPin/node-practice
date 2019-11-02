@@ -45,6 +45,25 @@ module.exports = app => {
     res.send(newsList)
   })
 
+  // 获取首页导航数据
+  router.get("/home/navs", async (req, res) => {
+    const data = [
+      "爆料站",
+      "故事站",
+      "周边商城",
+      "体验服",
+      "新人专区",
+      "荣耀·传承",
+      "模拟战资料库",
+      "王者营地",
+      "公众号",
+      "版本介绍",
+      "对局环境",
+      "无限王者团"
+    ]
+    res.send(data)
+  })
+
   // 获取列表
   router.get("/news/list", async (req, res) => {
     // 方法一 populate
