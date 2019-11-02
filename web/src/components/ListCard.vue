@@ -7,11 +7,11 @@
         v-for="(item, index) in categories"
         :key="index"
       >
-        <div class="nav-link" @click="activeIndex = index">{{item.name}}</div>
+        <div class="nav-link" @click="$refs.list.swiper.slideTo(index)">{{item.name}}</div>
       </div>
     </div>
     <div class="pt-3">
-      <swiper>
+      <swiper ref="list" @slide-change="() => {activeIndex = $refs.list.swiper.realIndex}">
         <swiper-slide :class="{active:false}" v-for="(item, index) in categories" :key="index">
           <slot name="items" :category="item"></slot>
         </swiper-slide>
@@ -31,14 +31,7 @@ export default {
       type: String,
       required: true
     },
-    categories: {
-      type: Array,
-      required: true
-    }
-  },
-  mounted() {
-    // eslint-disable-next-line no-console
-    console.log(this.categories[this.activeIndex].newsList)
+    categories: { type: Array, required: true }
   },
   data() {
     return {

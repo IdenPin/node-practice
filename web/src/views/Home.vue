@@ -29,18 +29,18 @@
       </div>
     </div>
     <!-- card -->
-    <m-list-card icon="news" title="新闻资讯" :categories="newsCates">
+    <m-list-card icon="news" title="新闻资讯" :categories="newsCats">
       <template #items="{category}">
         <div
-          class="py-2"
+          class="py-2 fs-lg d-flex"
           :class="{active:false}"
           v-for="(item, index) in category.newsList"
           :key="index"
         >
-          <span>[{{item.categoryName}}]</span>
-          <span>|</span>
-          <span>{{item.title}}</span>
-          <span>{{item.date}}</span>
+          <span class="text-primary">[{{item.categoryName}}]</span>
+          <span class="px-2">|</span>
+          <span class="flex-1 text-dark-1 text-ellipsis pr-2">{{item.title}}</span>
+          <span class="text-grey-1 fs-sm">{{item.updatedAt | date}}</span>
         </div>
       </template>
     </m-list-card>
@@ -49,11 +49,17 @@
 
 <script>
 // @ is an alias to /src
+import dayjs from 'dayjs'
 export default {
   name: 'home',
+  filters: {
+    date(val) {
+      return dayjs(val).format('MM/DD')
+    }
+  },
   data() {
     return {
-      newsCates: []
+      newsCats: []
     }
   },
   computed: {
@@ -61,13 +67,15 @@ export default {
       return this.$refs.mySwiper.swiper
     }
   },
-  mounted() {
+  created() {
     this.fetchNewsCats()
+  },
+  mounted() {
     this.swiper.slideTo(3, 1000, false)
   },
   methods: {
     async fetchNewsCats() {
-      this.newsCates = await this.$http.get('/news/list')
+      this.newsCats = await this.$http.get('/news/list')
     },
     callback() {}
   }
