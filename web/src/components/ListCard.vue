@@ -1,5 +1,5 @@
 <template>
-  <m-card :title="title" :icon="icon" class="mb-5">
+  <m-card :title="title" :icon="icon" class="mb-2">
     <div class="nav jc-between">
       <div
         class="nav-item"
@@ -10,8 +10,12 @@
         <div class="nav-link" @click="$refs.list.swiper.slideTo(index)">{{item.name}}</div>
       </div>
     </div>
-    <div class="pt-3">
-      <swiper ref="list" @slide-change="() => {activeIndex = $refs.list.swiper.realIndex}">
+    <div class="pt-2">
+      <swiper
+        ref="list"
+        :options="{autoHeight: true}"
+        @slide-change="() => {activeIndex = $refs.list.swiper.realIndex}"
+      >
         <swiper-slide :class="{active:false}" v-for="(item, index) in categories" :key="index">
           <slot name="items" :category="item"></slot>
         </swiper-slide>

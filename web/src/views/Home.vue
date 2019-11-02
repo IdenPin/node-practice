@@ -44,6 +44,23 @@
         </div>
       </template>
     </m-list-card>
+
+    <m-list-card icon="hero" title="英雄列表" :categories="heroes">
+      <template #items="{category}">
+        <div class="d-flex flex-wrap" style="margin:0 -0.5rem">
+          <div
+            class="p-2 text-center"
+            :class="{active:false}"
+            v-for="(item, index) in category.heroesList"
+            :key="index"
+            style="width: 20%"
+          >
+            <img :src="item.avatar" class="w-100" />
+            <div class="fs-sm text-grey-1">{{item.name}}</div>
+          </div>
+        </div>
+      </template>
+    </m-list-card>
   </div>
 </template>
 
@@ -59,8 +76,9 @@ export default {
   },
   data() {
     return {
+      navs: [],
       newsCats: [],
-      navs: []
+      heroes: []
     }
   },
   computed: {
@@ -71,6 +89,7 @@ export default {
   created() {
     this.fetchNavs()
     this.fetchNewsCats()
+    this.fetchHeroes()
   },
   mounted() {
     this.swiper.slideTo(3, 1000, false)
@@ -81,6 +100,9 @@ export default {
     },
     async fetchNewsCats() {
       this.newsCats = await this.$http.get('/news/list')
+    },
+    async fetchHeroes() {
+      this.heroes = await this.$http.get('/heroes/list')
     },
     callback() {}
   }
