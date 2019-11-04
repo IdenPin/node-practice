@@ -12,7 +12,7 @@ import { Notification } from "element-ui"
 
 let config = {
   // baseURL: process.env.baseURL || process.env.apiUrl || ""
-  baseURL: "http://localhost:3000/admin/api"
+  baseURL: "http://0.0.0.0:3000/admin/api"
   // timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 }

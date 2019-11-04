@@ -51,7 +51,7 @@ export default {
       const formData = new FormData()
       formData.append('file', file)
       const { url } = await this.$http.post(
-        'http://localhost:3000/admin/api/upload',
+        'http://0.0.0.0:3000/admin/api/upload',
         formData
       )
       Editor.insertEmbed(cursorLocation, 'image', url)
