@@ -26,6 +26,12 @@ const routes = [
         path: "matchCenter",
         name: "matchCenter",
         component: () => import("../views/MatchCenter.vue")
+      },
+      {
+        path: "article/:id",
+        name: "article",
+        props: true,
+        component: () => import("../views/Article.vue")
       }
     ]
   }
