@@ -7,7 +7,7 @@
       <div class="flex-1 ml-3 text-blue text-ellipsis">{{model.title}}</div>
       <div class="text-grey">{{model.updatedAt | toDate}}</div>
     </div>
-    <div class="px-2 page-body">{{model.content}}</div>
+    <div class="px-2 page-body" v-html="model.content"></div>
   </div>
 </template>
 
@@ -57,6 +57,9 @@ export default {
   }
   .page-body {
     border-top: 1px solid map-get($colors, 'light-1');
+    img {
+      width: 100%;
+    }
   }
 }
 </style>
