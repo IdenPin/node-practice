@@ -1,7 +1,6 @@
 module.exports = app => {
   const express = require("express")
   // 单词单复数转换，首字母大写
-  const inflection = require("inflection")
   const router = express.Router({
     mergeParams: true
   })

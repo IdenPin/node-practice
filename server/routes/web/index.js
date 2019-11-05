@@ -128,7 +128,7 @@ module.exports = app => {
     res.send(data)
   })
 
-  // 获取列表
+  // 获取首页列表
   router.get("/news/list", async (req, res) => {
     // 方法一 populate
     // const parent = await Category.findOne({
@@ -191,5 +191,11 @@ module.exports = app => {
     res.send(cats)
   })
 
+  // 获取文章列表
+  router.get("/articles/:id", async (req, res) => {
+    const Article = require('../../models/Article')
+    const rawData = await Article.findById(req.params.id)
+    res.send(rawData)
+  })
   app.use("/web/api/", router)
 }
