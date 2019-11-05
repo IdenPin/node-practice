@@ -191,11 +191,25 @@ module.exports = app => {
     res.send(cats)
   })
 
-  // 获取文章列表
+  // 获取文章详情
   router.get("/articles/:id", async (req, res) => {
     const Article = require('../../models/Article')
-    const rawData = await Article.findById(req.params.id)
-    res.send(rawData)
+    const data = await Article.findById(req.params.id).lean()
+    data.related = await Article.find().where({
+      categories: {
+        $in: data.categories
+      }
+    }).limit(2).lean()
+    res.send(data)
   })
+
+  // 获取英雄详情
+  router.get("/heroes/:id", async (req, res) => {
+    const Hero = require('../../models/Hero')
+    const data = await Hero.findById(req.params.id).lean()
+    res.send(data)
+  })
+
+
   app.use("/web/api/", router)
 }

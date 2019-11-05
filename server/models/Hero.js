@@ -6,6 +6,7 @@ const schema = new mongoose.Schema({
   avatar: {
     type: String
   },
+  banner: { type: String },
   title: {
     type: String
   },

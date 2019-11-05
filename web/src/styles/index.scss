@@ -46,7 +46,7 @@ $flex-direction: (
   "column": column
 );
 @each $key, $value in $flex-direction {
-  .dr-#{$key} {
+  .flex-#{$key} {
     flex-direction: $value;
   }
 }
@@ -116,6 +116,9 @@ $flex-direction: (
 }
 .text-center {
   text-align: center;
+}
+.text-bold {
+  font-weight: bold;
 }
 .text-ellipsis {
   display: inline-block;

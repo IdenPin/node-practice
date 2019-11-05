@@ -8,6 +8,21 @@
       <div class="text-grey">{{model.updatedAt | toDate}}</div>
     </div>
     <div class="px-2 page-body" v-html="model.content"></div>
+    <div class="recommand px-2 py-3">
+      <div>
+        <i class="icon-recommand"></i>
+        <span class="text-blue text-bold fs-lg">相关资讯</span>
+      </div>
+      <div class="rec-list py-2 d-flex" v-for="item in model.related" :key="item._id">
+        <router-link
+          tag="div"
+          class="text-bold flex-1 text-ellipsis"
+          style="cursor: pointer"
+          :to="`/article/${item._id}`"
+        >{{item.title}}</router-link>
+        <span class="text-grey">{{item.updatedAt | toDate}}</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -22,8 +37,11 @@ export default {
   props: {
     id: String
   },
-  mounted() {
-    this.fetchArticle()
+  watch: {
+    $route: {
+      handler: 'fetchArticle',
+      immediate: true
+    }
   },
   filters: {
     toDate(val) {
@@ -60,6 +78,9 @@ export default {
     img {
       width: 100%;
     }
+  }
+  .recommand {
+    border-top: 1px solid map-get($colors, 'light-1');
   }
 }
 </style>

@@ -37,7 +37,7 @@
           class="py-2 fs-lg d-flex"
           v-for="(item, index) in category.newsList"
           :key="index"
-          style="cursor: pinter"
+          style="cursor: pointer"
         >
           <span class="text-primary">[{{item.categoryName}}]</span>
           <span class="px-2">|</span>
@@ -50,16 +50,53 @@
     <m-list-card icon="hero" title="英雄列表" :categories="heroes">
       <template #items="{category}">
         <div class="d-flex flex-wrap" style="margin:0 -0.5rem">
-          <div
+          <router-link
+            tag="div"
             class="p-2 text-center"
-            :class="{active:false}"
             v-for="(item, index) in category.heroesList"
             :key="index"
+            :to="`/hero/${item._id}`"
             style="width: 20%"
           >
             <img :src="item.avatar" class="w-100" />
             <div class="fs-sm text-grey-1">{{item.name}}</div>
-          </div>
+          </router-link>
+        </div>
+      </template>
+    </m-list-card>
+
+    <m-list-card icon="hero" title="精彩视频" :categories="heroes">
+      <template #items="{category}">
+        <div class="d-flex flex-wrap" style="margin:0 -0.5rem">
+          <router-link
+            tag="div"
+            class="p-2 text-center"
+            v-for="(item, index) in category.heroesList"
+            :key="index"
+            :to="`/hero/${item._id}`"
+            style="width: 20%"
+          >
+            <img :src="item.avatar" class="w-100" />
+            <div class="fs-sm text-grey-1">{{item.name}}</div>
+          </router-link>
+        </div>
+      </template>
+    </m-list-card>
+
+    <m-list-card icon="hero" title="图文攻略" :categories="heroes">
+      <template #items="{category}">
+        <div class="d-flex flex-wrap" style="margin:0 -0.5rem">
+          <router-link
+            tag="div"
+            class="p-2 text-center"
+            v-for="(item, index) in category.heroesList"
+            :key="index"
+            :to="`/hero/${item._id}`"
+            style="width: 20%"
+          >
+            <img :src="item.avatar" class="w-100" />
+            <div class="fs-sm text-grey-1">{{item.name}}</div>
+          </router-link>
         </div>
       </template>
     </m-list-card>
@@ -67,7 +104,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import dayjs from 'dayjs'
 export default {
   name: 'home',

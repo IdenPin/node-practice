@@ -34,11 +34,27 @@ const routes = [
         component: () => import("../views/Article.vue")
       }
     ]
+  },
+  {
+    path: "/hero/:id",
+    name: "hero",
+    props: true,
+    component: () => import("../views/Hero.vue")
   }
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return {
+        x: 0,
+        y: 0
+      }
+    }
+  }
 })
 
 export default router
