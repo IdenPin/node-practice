@@ -8,5 +8,5 @@ module.exports = {
    */
 
   // eslint-disable-next-line no-undef
-  publicPath: env.NODE_ENV === "production" ? "/HOK-Admin/" : ""
+  publicPath: process.env.NODE_ENV === "production" ? "/HOK-Admin/" : ""
 }
