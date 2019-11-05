@@ -1,3 +1,3 @@
 ### Full Stack Practice
 
-Express + Vue + Element
+express + vue + element
