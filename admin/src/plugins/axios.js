@@ -11,8 +11,10 @@ import { Notification } from "element-ui"
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 let config = {
-  // baseURL: process.env.baseURL || process.env.apiUrl || ""
-  baseURL: "http://0.0.0.0:3000/admin/api"
+  baseURL:
+    process.env.NODE_ENV === "production"
+      ? "http://1orz.cn/HOK-Server/admin/api"
+      : "http://0.0.0.0:3000/admin/api"
   // timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 }
