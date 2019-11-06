@@ -104,7 +104,6 @@ module.exports = app => {
     authMiddleware(),
     upload.single("file"),
     async (req, res, next) => {
-      console.log('--------', !!process.env.NODE_ENV)
       const file = req.file
       file.url = !!process.env.NODE_ENV
         ? `http://0.0.0.0:3000/uploads/${file.filename}`
