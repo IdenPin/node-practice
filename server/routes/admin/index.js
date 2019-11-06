@@ -107,7 +107,7 @@ module.exports = app => {
       const file = req.file
       file.url = !!process.env.NODE_ENV
         ? `http://0.0.0.0:3000/uploads/${file.filename}`
-        : `https://1orz.cn/HOK-Server/uploads/${file.filename}`
+        : `https://1orz.cn/GOK-Server/uploads/${file.filename}`
       res.send(file)
     }
   )

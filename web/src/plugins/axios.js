@@ -13,7 +13,7 @@ import axios from "axios"
 let config = {
   baseURL:
     process.env.NODE_ENV === "production"
-      ? "https://1orz.cn/HOK-Server/web/api"
+      ? "https://1orz.cn/GOK-Server/web/api"
       : "http://0.0.0.0:3000/web/api"
   // timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control

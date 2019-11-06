@@ -45,7 +45,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: process.env.NODE_ENV === 'production' ? 'history' : '', // 后端支持可开
-  base: process.env.NODE_ENV === 'production' ? '/HOK-Web' : '',
+  base: process.env.NODE_ENV === 'production' ? '/GOK-Web' : '',
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {

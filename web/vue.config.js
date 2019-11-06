@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/HOK-Web" : ""
+  publicPath: process.env.NODE_ENV === "production" ? "/GOK-Web" : ""
 }
