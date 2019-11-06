@@ -13,7 +13,7 @@ import axios from "axios"
 let config = {
   baseURL:
     process.env.NODE_ENV === "production"
-      ? "http://1orz.cn/HOK-Server/web/api"
+      ? "https://1orz.cn/HOK-Server/web/api"
       : "http://0.0.0.0:3000/web/api"
   // timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
@@ -22,7 +22,7 @@ let config = {
 const _axios = axios.create(config)
 
 _axios.interceptors.request.use(
-  function(config) {
+  function (config) {
     // const tokenData = JSON.parse(localStorage.getItem("userData"))
     // if (tokenData && tokenData.token) {
     //   config.headers.Authorization =
@@ -31,7 +31,7 @@ _axios.interceptors.request.use(
     // Do something before request is sent
     return config
   },
-  function(error) {
+  function (error) {
     // Do something with request error
     return Promise.reject(error)
   }
@@ -39,11 +39,11 @@ _axios.interceptors.request.use(
 
 // Add a response interceptor
 _axios.interceptors.response.use(
-  function(response) {
+  function (response) {
     // Do something with response data
     return response.data
   },
-  function(error) {
+  function (error) {
     console.log("error.response", error.response)
     // Notification({
     //   type: "error",
@@ -58,7 +58,7 @@ _axios.interceptors.response.use(
 )
 
 // eslint-disable-next-line no-unused-vars
-Plugin.install = function(Vue, options) {
+Plugin.install = function (Vue, options) {
   Vue.axios = _axios
   window.axios = _axios
   Object.defineProperties(Vue.prototype, {
