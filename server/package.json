@@ -4,13 +4,15 @@
   "description": "1. npm 安装依赖    npm install express@next mongoose cors",
   "main": "index.js",
   "scripts": {
-    "serve": "nodemon index.js",
+    "serve": "pm2 start ./index.js",
+    "dev": "cross-env nodemon ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "cross-env": "^6.0.3",
     "express": "^5.0.0-alpha.7",
     "mongoose": "^5.7.7",
     "multer": "^1.4.2"

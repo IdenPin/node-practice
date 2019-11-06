@@ -1,5 +1,5 @@
 import Vue from "vue"
-import './plugins/axios'
+import "./plugins/axios"
 import App from "./App.vue"
 Vue.config.productionTip = false
 import VueAwesomeSwiper from "vue-awesome-swiper"
@@ -14,7 +14,6 @@ Vue.use(VueAwesomeSwiper /* { default global options } */)
 Vue.use(Element)
 import "./styles/index.scss"
 import router from "./router"
-
 new Vue({
   router,
   store,
