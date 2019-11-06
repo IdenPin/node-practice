@@ -106,7 +106,7 @@ module.exports = app => {
     async (req, res, next) => {
       const file = req.file
       file.url = !!process.env.NODE_ENV
-        ? `http://1orz.cn/HOK-Admin/uploads/${file.filename}`
+        ? `http://1orz.cn/HOK-Server/uploads/${file.filename}`
         : `http://0.0.0.0:3000/uploads/${file.filename}`
       res.send(file)
     }
